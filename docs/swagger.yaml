@@ -1,0 +1,63 @@
+definitions:
+  pojo.WrMenuVo:
+    properties:
+      id:
+        type: integer
+      menuName:
+        type: string
+      orderNum:
+        type: string
+      path:
+        type: string
+      status:
+        type: string
+      visible:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /WrMenu/getWrMenuById:
+    get:
+      consumes:
+      - application/json
+      description: 根据菜单id获取菜单详情
+      parameters:
+      - description: 菜单id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "0":
+          description: ok
+          schema:
+            type: string
+      summary: 获取详情
+      tags:
+      - WrMenu
+  /WrMenu/getWrMenuList:
+    post:
+      consumes:
+      - application/json
+      description: 获取所有菜单列表
+      parameters:
+      - description: 实体类信息
+        in: body
+        name: json
+        required: true
+        schema:
+          $ref: '#/definitions/pojo.WrMenuVo'
+      produces:
+      - application/json
+      responses:
+        "0":
+          description: ok
+          schema:
+            type: string
+      summary: 获取列表
+      tags:
+      - WrMenu
+swagger: "2.0"
