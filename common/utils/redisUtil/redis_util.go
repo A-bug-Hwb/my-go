@@ -6,11 +6,11 @@ import (
 	"time"
 )
 
-// 公用
+// RedisUtil 公用
 var RedisUtil = &models.RedisClient
 var ctx = context.Background()
 
-// 插入
+// Set 插入
 func Set(key string, value interface{}) bool {
 	_, err := (*RedisUtil).GetSet(ctx, key, value).Result()
 	if err != nil {
@@ -19,12 +19,12 @@ func Set(key string, value interface{}) bool {
 	return true
 }
 
-// 插入（带过期时间）
+// SetTime 插入（带过期时间）
 func SetTime(key string, value interface{}, expiration time.Duration) {
 	(*RedisUtil).Set(ctx, key, value, expiration)
 }
 
-// 获取
+// Get 获取
 func Get(key string) interface{} {
 	res, err := (*RedisUtil).Get(ctx, key).Result()
 	if err != nil {
@@ -33,7 +33,7 @@ func Get(key string) interface{} {
 	return res
 }
 
-// 删除
+// Del 删除
 func Del(key ...string) bool {
 	_, err := (*RedisUtil).Del(ctx, key...).Result()
 	if err != nil {

@@ -1,10 +1,10 @@
-package boToVoUtil
+package converUtil
 
 import (
 	"reflect"
 )
 
-// 按名字和类型复制（&a,b）b->a
+// CopyFields 按名字和类型复制（&a,b）b->a
 func CopyFields(dst interface{}, src interface{}) {
 	dstValue := reflect.ValueOf(dst).Elem()
 	srcValue := reflect.ValueOf(src).Elem()
@@ -43,9 +43,8 @@ func CopyFields(dst interface{}, src interface{}) {
 	}
 }
 
-// 按名字和类型复制（&a,b）b->a
+// CopyFieldsList 按名字和类型复制（&a,b）b->a
 func CopyFieldsList(dst []interface{}, src []interface{}) {
-
 	for i := 0; i < len(src); i++ {
 		CopyFields(&dst[i], src[i])
 	}

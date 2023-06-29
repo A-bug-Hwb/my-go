@@ -10,11 +10,11 @@ func WrMenuApi(Router *gin.Engine) {
 	//获取列表
 	apiV1 := Router.Group("/api/v1")
 	{
-		WrMenuApi := apiV1.Group("/WrMenu")
+		UserApi := apiV1.Group("/user")
 		{
-			WrMenuApi.POST("/getWrMenuList", api.GetWrMenuList)
-			WrMenuApi.GET("/getWrMenuById", api.GetWrMenuById)
-			WrMenuApi.POST("/updateWrMenu", api.UpdateWrMenu)
+			UserApi.POST("/login", api.Login)
+			UserApi.POST("/register", api.Register)
+			//UserApi.GET("/getUserInfo", api.GetUserInfo)
 		}
 	}
 }

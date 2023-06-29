@@ -3,16 +3,16 @@ package config
 import (
 	"fmt"
 	"gopkg.in/ini.v1"
-	"myGo/logger"
+	"myGo/common/logger"
 )
 
-// 服务映射
+// ServerConf 服务映射
 type ServerConf struct {
 	Port string
 	Ip   string
 }
 
-// mysql配置映射
+// MysqlConf mysql配置映射
 type MysqlConf struct {
 	Dbname   string
 	Username string
@@ -23,7 +23,7 @@ type MysqlConf struct {
 	Timeout  string
 }
 
-// Redis映射
+// RedisConf Redis映射
 type RedisConf struct {
 	DB           int
 	Addr         string
@@ -40,17 +40,17 @@ type IpConf struct {
 	IpWhite string
 }
 
-type JwtAutoConf struct {
-	SingKey string
-	Timeout int64
-	Header  string
+type TokenConf struct {
+	Secret     string
+	ExpireTime int
+	Header     string
 }
 
 var SerConf ServerConf
 var MyConf MysqlConf
 var RedConf RedisConf
 var IConf IpConf
-var JwtConf JwtAutoConf
+var TokConf TokenConf
 
 func init() {
 	cfg, err := ini.Load("config/config.ini")
@@ -87,8 +87,8 @@ func init() {
 	IConf.IpWhite = cfg.Section("ip").Key("ip-white").String()
 
 	//Jwt映射
-	JwtConf.SingKey = cfg.Section("jwt").Key("sing-key").String()
-	JwtConf.Timeout, _ = cfg.Section("jwt").Key("timeout").Int64()
-	JwtConf.Header = cfg.Section("jwt").Key("header").String()
+	TokConf.Secret = cfg.Section("token").Key("secret").String()
+	TokConf.ExpireTime, _ = cfg.Section("token").Key("expireTime").Int()
+	TokConf.Header = cfg.Section("token").Key("header").String()
 	logger.Info("初始化配置文件完成......")
 }

@@ -6,8 +6,8 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
+	"myGo/common/logger"
 	"myGo/config"
-	"myGo/logger"
 )
 
 var MysqlDb *gorm.DB

@@ -2,7 +2,7 @@ package models
 
 import (
 	"context"
-	"myGo/logger"
+	"myGo/common/logger"
 	//"github.com/go-redis/redis"
 	"github.com/go-redis/redis/v8"
 	"myGo/config"
